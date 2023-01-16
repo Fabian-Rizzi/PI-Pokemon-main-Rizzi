@@ -38,10 +38,10 @@ const { pokemon, type } = sequelize.models;
 
 
 //synchronizing models with database
-async () => {
-  await pokemon.sync();
-  await type.sync();
-}
+  // async () => {
+  //   await pokemon.sync();
+  //   await type.sync();
+  // };
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
