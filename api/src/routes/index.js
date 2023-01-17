@@ -14,22 +14,19 @@ let types = [];
 let apiPokemons = [];
 
 
-for (let id = 1; id <= 15; id++) {
+for (let id = 1; id <= 24; id++) {
     apiPokemons.push(`https://pokeapi.co/api/v2/pokemon/${id}`);
 }
 
-
 // Get all pokemons
-
 router.get("/pokemons", async (req, res) => {
-
-
     pokemons = [];
 
     await Promise.all(apiPokemons.map((p) => axios.get(p)))
-        .then((res) => {
-            for (let i = 0; i < res.length; i++) {
-                let data = res[i].data;
+        .then((response) => {
+            // console.log(response);
+            for (let i = 0; i < response.length; i++) {
+                let data = response[i].data;
                 pokemons.push({
                   id: data.id,
                   name: data.name,
@@ -41,7 +38,15 @@ router.get("/pokemons", async (req, res) => {
                   weight: data.weight,
                 });
             }
-})
+            res.status(200).send(pokemons);
+        }
+        )
+    .catch((err) => {
+        console.log(err);
+        res.status(404).send("Error");
+    });
+    
+
 });
 
 
