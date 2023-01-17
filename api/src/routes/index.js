@@ -21,7 +21,7 @@ for (let id = 1; id <= 15; id++) {
 
 // Get all pokemons
 
-router.post("/pokemons", async (req, res) => {
+router.get("/pokemons", async (req, res) => {
 
 
     pokemons = [];
