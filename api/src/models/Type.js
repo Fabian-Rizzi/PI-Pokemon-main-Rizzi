@@ -5,17 +5,19 @@ module.exports = (sequelize) => {
   // defino el modelo
 
   sequelize.define('type', {
-    name: {
+    type: {
       type: DataTypes.STRING,
-      allowNull: false,
+      unique: true,
+      // allowNull: false,
     },
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       unique: true,
-      validate: {
-        isNumeric: true,
-      }
+      autoIncrement: true,
+      // validate: {
+      //   isNumeric: true,
+      // }
     }
   });
   };
