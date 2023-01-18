@@ -13,7 +13,7 @@ let types = [];
 let apiPokemons = [];
 
 
-for (let id = 1; id <= 2; id++) {
+for (let id = 1; id <= 10; id++) {
     apiPokemons.push(`https://pokeapi.co/api/v2/pokemon/${id}`);
 }
 // console.log(apiPokemons);
@@ -96,14 +96,14 @@ router.post("/pokemons", async (req, res) => {
         const pokemon = await Pokemon.create(newPokemon);
         const addType1 = await Type.findOne({
         where: {
-            typeName: type1,
+            type: type1,
         },
     });
         await pokemon.addTypes(addType1, { through: "PokemonType" });
             if (type2) {
         const addType2 = await Type.findOne({
             where: {
-                typeName: type2,
+                type: type2,
             },
         });
         await pokemon.addTypes(addType2, { through: "PokemonType" });
@@ -227,16 +227,30 @@ console.log(name)
   if (pokemons.length > 0) res.status(200).json(pokemons);
 });
 
-
-router.get("/types", async (req, res) => {
+const storeTypes = async () => {
     const promiseTypes = [];
     await axios.get("https://pokeapi.co/api/v2/type").then((response) => {
         const { results } = response.data;
         promiseTypes.push(results.map((type) => type.name));
+    })
+    for (let i = 0; i < promiseTypes[0].length; i++) {
+        await Type.findOrCreate({
+            where: {
+                type: promiseTypes[0][i],
+            },
+        });
+    }
+    return promiseTypes[0];
+};
 
-
-        res.status(200).json(promiseTypes);
-})});
+router.get("/types", async (req, res) => {
+    
+    // return promiseTypes[0];
+    // res.status(200).json(promiseTypes);
+    
+    const types = await storeTypes();
+    res.status(200).json(types);
+});
 
 
 module.exports = router;
