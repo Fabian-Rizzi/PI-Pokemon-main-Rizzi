@@ -41,10 +41,11 @@ Type.belongsToMany(Pokemon, { through: 'PokemonType' });
 
 
 // synchronizing models with database
-  async () => {
-    await Pokemon.sync();
-    await Type.sync();
-  }; 
+async () => {
+  await Pokemon.sync();
+  await Type.sync();
+  await PokemonType.sync();
+}; 
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
