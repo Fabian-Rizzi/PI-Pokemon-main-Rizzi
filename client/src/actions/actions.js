@@ -47,8 +47,13 @@ export function searchPokemon(name) {
             payload: response.data,
         });
         } catch (err) {
+
         console.log(err.message);
         console.log("Pokemon not found")
+        return dispatch({
+            type: SEARCH_POKEMON,
+            payload: "Pokemon not found",
+          });
         }
     };
     }
