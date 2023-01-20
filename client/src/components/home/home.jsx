@@ -53,7 +53,8 @@ export default function Home() {
                 <p>Defense: {pokemon.def}</p>
                 <p>Speed: {pokemon.spd}</p>
                 <p>Height: {pokemon.height}</p>
-                <p>Weight: {pokemon.weight}</p>
+                <p>Weight: {pokemon.weight}</p> 
+                <p>Types: {pokemon.types}</p>
               </div>
             </div>
           )
