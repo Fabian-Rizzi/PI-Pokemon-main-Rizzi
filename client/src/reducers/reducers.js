@@ -6,10 +6,12 @@ import {
 } from "../actions/actions";
 
 const initialState = {
-    // getPokemons: [],
+    getPokemons: [],
     pokemons: [],
+    pagePokemons: [],
     types: [],
-    searchPokemons: [],
+    searchPokemon: {},
+    singlePokemon: {},
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -17,12 +19,14 @@ export default function rootReducer(state = initialState, action) {
         case GET_POKEMONS:
             return {
                 ...state,
+                getPokemons: action.payload,
                 pokemons: action.payload,
+                pagePokemons: action.payload.slice(0, 12),
             };
         case GET_BY_ID:
             return {
                 ...state,
-                pokemons: action.payload,
+                singlePokemon: action.payload,
             };
         case GET_TYPES:
             return {
@@ -32,7 +36,9 @@ export default function rootReducer(state = initialState, action) {
         case SEARCH_POKEMON:
             return {
                 ...state,
-                searchPokemons: action.payload,
+                searchPokemon: action.payload,
+                pokemons: [action.payload],
+                pagePokemons: [action.payload],
             };
         default:
             return state;
