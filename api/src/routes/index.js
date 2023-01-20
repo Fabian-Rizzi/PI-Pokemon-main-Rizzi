@@ -13,7 +13,7 @@ let types = [];
 let apiPokemons = [];
 
 
-for (let id = 1; id <= 10; id++) {
+for (let id = 1; id <= 2; id++) {
     apiPokemons.push(`https://pokeapi.co/api/v2/pokemon/${id}`);
 }
 // console.log(apiPokemons);
@@ -28,23 +28,24 @@ router.get("/pokemons", async (req, res) => {
             for (let i = 0; i < response.length; i++) {
                 let data = response[i].data;
                 pokemons.push({
-                  id: data.id,
-                  name: data.name,
-                  hp: data.stats[0].base_stat,
-                  atk: data.stats[1].base_stat,
-                  def: data.stats[2].base_stat,
-                  spd: data.stats[5].base_stat,
-                  height: data.height,
-                  weight: data.weight,
-                  type1: data.types[0].type.name,
-                  type2: data.types[1] ? data.types[1].type.name : null,
+                    id: data.id,
+                    name: data.name,
+                    hp: data.stats[0].base_stat,
+                    atk: data.stats[1].base_stat,
+                    def: data.stats[2].base_stat,
+                    spd: data.stats[5].base_stat,
+                    img: data.sprites.other.dream_world.front_default,
+                    height: data.height,
+                    weight: data.weight,
+                    type1: data.types[0].type.name,
+                    type2: data.types[1] ? data.types[1].type.name : null,
                 });
             }
         }
         )
     .catch((err) => {
         console.log(err);
-        res.status(400).send("Error");
+        res.status(400).send("Error connecting to API");
     });
     //from database
     try {
@@ -76,7 +77,7 @@ console.log(name)
 
 router.post("/pokemons", async (req, res) => {
     //stores information from the request body
-    const { name, hp, atk, def, spd, height, weight, type1, type2 } = req.body;
+    const { name, hp, atk, def, spd, height, img, weight, type1, type2 } = req.body;
     //checks if name is empty
     if (!name) {
         res.status(400).send("Name is required");
@@ -88,6 +89,7 @@ router.post("/pokemons", async (req, res) => {
         def,
         spd,
         height,
+        img,
         weight,
         type1,
         type2,
@@ -96,17 +98,17 @@ router.post("/pokemons", async (req, res) => {
         const pokemon = await Pokemon.create(newPokemon);
         const addType1 = await Type.findOne({
         where: {
-            type: type1,
+            typename: type1,
         },
     });
-        await pokemon.addTypes(addType1, { through: "PokemonType" });
+        await pokemon.addTypes(addType1, { through: PokemonType });
             if (type2) {
         const addType2 = await Type.findOne({
             where: {
-                type: type2,
+                typename: type2,
             },
         });
-        await pokemon.addTypes(addType2, { through: "PokemonType" });
+        await pokemon.addTypes(addType2, { through: PokemonType });
     }
     res.status(201).send(pokemon);
     }
@@ -125,16 +127,17 @@ router.get("/pokemons/:id", async (req, res) => {
             for (let i = 0; i < response.length; i++) {
                 let data = response[i].data;
                 pokemons.push({
-                  id: data.id,
-                  name: data.name,
-                  hp: data.stats[0].base_stat,
-                  atk: data.stats[1].base_stat,
-                  def: data.stats[2].base_stat,
-                  spd: data.stats[5].base_stat,
-                  height: data.height,
-                  weight: data.weight,
-                  type1: data.types[0].type.name,
-                  type2: data.types[1] ? data.types[1].type.name : null,
+                    id: data.id,
+                    name: data.name,
+                    hp: data.stats[0].base_stat,
+                    atk: data.stats[1].base_stat,
+                    def: data.stats[2].base_stat,
+                    spd: data.stats[5].base_stat,
+                    img: data.sprites.other.dream_world.front_default,
+                    height: data.height,
+                    weight: data.weight,
+                    type1: data.types[0].type.name,
+                    type2: data.types[1] ? data.types[1].type.name : null,
                 });
             }
         }
@@ -155,7 +158,7 @@ router.get("/pokemons/:id", async (req, res) => {
     }
   try {
     const { id } = req.params;
-console.log(id)
+    // console.log(id)
     if (id) {
       const pokemonByID = pokemons.find((pokemon) => {
         return pokemon.id == id;
@@ -186,6 +189,7 @@ router.get("/pokemons", async (req, res) => {
                   hp: data.stats[0].base_stat,
                   atk: data.stats[1].base_stat,
                   def: data.stats[2].base_stat,
+                  img: data.sprites.other.dream_world.front_default,
                   spd: data.stats[5].base_stat,
                   height: data.height,
                   weight: data.weight,
@@ -216,6 +220,7 @@ console.log(name)
       const pokemonByName = pokemons.find((pokemon) => {
         return pokemon.name.toLowerCase() === name.toLowerCase();
       });
+      if (queryPokemon === undefined) throw new Error();
 
       return res.status(200).json(pokemonByName);
     }
@@ -243,14 +248,16 @@ const storeTypes = async () => {
     return promiseTypes[0];
 };
 
+
 router.get("/types", async (req, res) => {
     
     // return promiseTypes[0];
     // res.status(200).json(promiseTypes);
     
-    const types = await storeTypes();
-    res.status(200).json(types);
+    const typesArr = await storeTypes();
+    res.status(200).json(typesArr);
 });
+
 
 
 module.exports = router;
