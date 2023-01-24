@@ -6,6 +6,7 @@ import { getPokemons } from '../../actions/actions.js'
 import { Link } from 'react-router-dom'
 import { getById } from '../../actions/actions.js'
 import { getTypes } from '../../actions/actions.js'
+import { clearId } from '../../actions/actions.js'
 import {searchPokemon} from '../../actions/actions.js'
 import Card from '../card/card.jsx'
 
@@ -15,18 +16,23 @@ export default function Home() {
   const [pokemons, setPokemons] = useState(false)
   const allPokemons = useSelector((state) => state.pokemons) //.pokemons?
   
+  const arrayPokemons = allPokemons.pagePokemons;
 
   console.log(allPokemons)
   console.log('asd')
 
 
   useEffect(() => {
-    dispatch(getTypes());
+    if (allPokemons.pokemons.length < 40) {
     dispatch(getPokemons());
-  }, []);
+    dispatch(getTypes());
+  }
+  if (allPokemons.selectPokemon.id) {
+    dispatch(clearId());
+  }}, [allPokemons]);
 
   function handleClick(e) {
-    e.preventDefault();
+    e.preventDefault();pokemons
     dispatch(getPokemons());
   }
     
@@ -43,21 +49,8 @@ export default function Home() {
     <div>
       <h1>Homeee. Tiembla Pol</h1>
       <div className="container">
-        {allPokemons.map((pokemon) => {
-          return (
-            <div className="pokemon-card">
-              <h3>{pokemon.name}</h3>
-              <div className="pokemon-card-info">
-                <p>HP: {pokemon.hp}</p>
-                <p>Attack: {pokemon.atk}</p>
-                <p>Defense: {pokemon.def}</p>
-                <p>Speed: {pokemon.spd}</p>
-                <p>Height: {pokemon.height}</p>
-                <p>Weight: {pokemon.weight}</p> 
-                <p>Types: {pokemon.types}</p>
-              </div>
-            </div>
-          )
+        {arrayPokemons.map((pokemon, index) => {
+          <pokemonDisplay index={index} key={index} />
         }
         )}
       </div>
