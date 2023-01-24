@@ -1,8 +1,10 @@
 import axios from "axios";
+export const NEW_LOAD = "NEW_LOAD";
 
 export const GET_POKEMONS = "GET_POKEMONS",
     GET_BY_ID = "GET_BY_ID",
     GET_TYPES = "GET_TYPES",
+    CLEAR_ID = "CLEAR_ID";
     SEARCH_POKEMON = "SEARCH_POKEMON";
 
 
@@ -35,6 +37,12 @@ export function getTypes() {
         });
     };
     }
+
+export function clearId() {
+  return function (dispatch) {
+    return dispatch({ type: CLEAR_ID });
+  };
+}
 
 export function searchPokemon(name) {
     return async function (dispatch) {
