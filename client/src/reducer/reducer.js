@@ -3,11 +3,13 @@ import {
     GET_BY_ID,
     GET_TYPES,
     SEARCH_POKEMON,
+    NEW_LOAD,
 } from "../actions/actions";
 
 const initialState = {
     getPokemons: [],
     pokemons: [],
+    allPokemons: [],
     pagePokemons: [],
     types: [],
     searchPokemon: {},
@@ -20,6 +22,7 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 getPokemons: action.payload,
+                allPokemons: action.payload,
                 pokemons: action.payload,
                 pagePokemons: action.payload.slice(0, 12),
             };
@@ -37,8 +40,8 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 searchPokemon: action.payload,
-                pokemons: [action.payload],
-                pagePokemons: [action.payload],
+                pokemons: action.payload,
+                pagePokemons: action.payload,
             };
         default:
             return state;
