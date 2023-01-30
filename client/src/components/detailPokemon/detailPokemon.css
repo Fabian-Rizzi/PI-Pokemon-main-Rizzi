@@ -1,0 +1,76 @@
+.backgroundD {
+    background-image: url("../../images/fondo2.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    padding-bottom: 120px;
+}
+
+.detailPokemon {
+    opacity: 0.9;
+    display: flex;
+    margin: 20px;
+    border: solid 10px red;
+    border-radius: 10px;
+    background-color: rgba(133, 18, 162, 0.2);
+    font-family: Raleway;
+    color: black;
+}
+
+.img {
+    background-image: url("../../images/fondoDetail.png");
+    border: solid 3px black;
+    background-size: cover;
+    height: 500px;
+    width: 600px;
+    border-radius: 20px;
+}
+
+.pokemon { 
+    color: white;
+    /* background-color: rgb(5, 83, 228); */
+    border: solid 5px rgb(0, 0, 0);
+    border-radius: 10px;
+    padding: 2px;
+    position: relative;
+    top: 140px;
+    height: 190px;
+    vertical-align: auto;
+    margin-top: 30px;
+    padding-top: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin: 10px;
+    color: black;
+    margin-right: 40px;
+    margin-left: 40px;
+
+}
+
+
+.data1 {
+    /* padding-left: 60px; */
+    position: relative;
+    top: 150px;
+    padding: 10px;
+    width: 250px;
+}
+
+.data2 {
+    position: relative;
+    top: 150px;
+    padding: 10px;
+    width: 250px;
+}
+
+
+p {
+    background-color: crimson;
+    height: 35px;
+    font-size: 20px;
+    border-radius: 10px;
+    line-height: 35px;
+    vertical-align: middle;
+    width: 150px;
+    text-align: center;
+
+}
