@@ -1,0 +1,32 @@
+.landing {
+    display: flex;
+    justify-content: space-around;
+    background-color: red;
+    border-top-right-radius: 20%;
+    border-top-left-radius: 20%;
+    border: solid black 5px;
+    border-left: none;
+    border-right: none;
+}
+
+.landing img {
+    height: 100px;
+    width: 300px;
+}
+
+.buttonCreate {
+    position: relative;
+    right: 30px;
+    top: 20px;
+}
+
+.btnCreate {
+    height: 60px;
+    width: 150px;
+    color: darkred;
+}
+
+.mainTitle {
+    position: relative;
+    right: 60px;
+}
