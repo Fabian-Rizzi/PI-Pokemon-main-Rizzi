@@ -19,12 +19,17 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-require("dotenv").config();
-const { PORT } = process.env;
+const { createDbPokemons, createDbTypes } = require("./src/controllers")
+const syncOptions = { force: true, alter: true };
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
-  server.listen(PORT, () => {
-    console.log('%s listening at ' + PORT); // eslint-disable-line no-console
+conn.sync(syncOptions).then(() => {
+  server.listen(3001, async () => {
+
+    // if(syncOptions.force){
+      await createDbTypes()
+      // await createDbPokemons()
+    // }
+    console.log('conecting and listening at 3001'); // eslint-disable-line no-console
   });
 });

@@ -2,7 +2,6 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const { isAsyncFunction } = require('util/types');
 const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
@@ -31,25 +30,14 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Pokemon, Type } = sequelize.models;
+const { Pokemon, Types } = sequelize.models;
 
-// Aca vendrian las relaciones
+// // Aca vendrian las relaciones
+Pokemon.belongsToMany(Types, { through: "pokemons_types"}) 
+Types.belongsToMany(Pokemon, { through: "pokemons_types"})
 // Product.hasMany(Reviews);
-
-Pokemon.belongsToMany(Type, { through: 'PokemonType' });
-Type.belongsToMany(Pokemon, { through: 'PokemonType' });
-
-
-// synchronizing models with database
-async () => {
-  await Pokemon.sync();
-  await Type.sync();
-  await PokemonType.sync();
-}; 
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
 };
-
-
