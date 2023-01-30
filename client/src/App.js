@@ -1,29 +1,26 @@
 import './App.css';
-import React from 'react';
-import { Route, BrowserRouter, Switch} from 'react-router-dom';
-import LandingPage from './components/landingPage/landingPage';
-import Home from './components/home/home'
-import { useDispatch, useSelector } from "react-redux";
-import Card from './components/card/card';
+import { Route } from "react-router-dom";
+import InitialPage from "./components/initialPage/initialPage.jsx";
+import Home from './components/home/home';
+import DetailPokemon from './components/detailPokemon/detailPokemon';
+import CreatePokemons from './components/createPokemon/createPokemon';
+
+
+
+
+
+
 
 function App() {
-  return (
-    <BrowserRouter>
-    <div className="App">
-      <Switch>
-      <Route exact path="/">
-        <LandingPage />
-      </Route>
 
-      <Route exact path="/home">
-        <Home />
-      </Route>
-      <Route exact path="/home/:idPokemon">
-        <Card />
-      </Route>
-      </Switch>
+  return (
+    <div className="App">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"></link>
+        <Route exact path="/" component={InitialPage} />
+        <Route exact path="/pokemons" component={Home} />
+        <Route path="/pokemons/:id" component={DetailPokemon} />
+        <Route path="/create" component={CreatePokemons} />
     </div>
-    </BrowserRouter>
   );
 }
 
