@@ -11,20 +11,22 @@
     /* background-color: rgb(35, 137, 162) ; */
     font-family: Raleway;
     font-size: 20px;
-    opacity: 0.82;
+    opacity: 0.95;
     margin: 20px;
     transition: all 0.22s ease-in-out;
     animation-duration: 0.5s;
     animation-iteration-count: 1;
     transform-origin: bottom;
     font-weight: 900;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.3);
+
     /* -webkit-transition: padding 2s; */
 }
 
 
 .card-pokemon:hover {
     transform: translateY(-20px);
-    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.4);
     opacity: 1;
 }
 
