@@ -96,11 +96,14 @@
     left: 620px;
     margin: 5px;
     background-color: #fcff57;
-    border: solid 3px black;
+    border: solid 3px darkred;
     border-radius: 10px;
     height: 70px;
     font-family: Raleway;
     width: 300px;
+    color: darkred;
+    opacity: 0.90;
+
 }
 
 input {
