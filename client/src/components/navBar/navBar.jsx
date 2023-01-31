@@ -7,7 +7,7 @@ import { getPokemonsByName, getAllPokemons  } from "../../redux/actions";
 const NavBar = ({ setPkmns, setCurrentPage }) => {
 
     const [ pkmnName, setPkmnName ] = useState({ name: "" })
-    const [ filter, setFilter ] = useState({ 
+    const [ filter, setFilter ] = useState({
         typeFilter: "all",
         nameFilter: "default",
         attackFilter: "default",
@@ -134,6 +134,8 @@ const NavBar = ({ setPkmns, setCurrentPage }) => {
                 <button onClick={search} >Search</button>
             </div>
             <button className="filterBtn" onClick={filterButton} >FILTER</button>
+            <button className="refreshBtn" onClick={refresh} >REFRESH</button>
+
             <div className="refresh" >
                 <div className="light" onClick={refresh}></div>
             </div>
