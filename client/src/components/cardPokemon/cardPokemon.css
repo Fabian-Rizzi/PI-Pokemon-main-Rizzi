@@ -2,19 +2,52 @@
 .card-pokemon {
     padding: 20px;
     margin: 10px;
-    border: solid 5px darkred;
+    border: solid 2px rgba(139, 0, 0, .3);
     border-radius: 10px ;
-    background-color: rgba(251,138 , 138, 1);
+    /* background-color: rgba(251,138 , 138, 1); */
+    /* background-color: linear-gradient(red, rgba(251,138 , 138, 1)); */
+    background-image: linear-gradient(to top left, rgb(255, 82, 56) , rgb(212, 212, 0));
     /* background-color: rgba(35, 137, 162, 0.9); */
     /* background-color: rgb(35, 137, 162) ; */
     font-family: Raleway;
     font-size: 20px;
-    opacity: 0.9;
+    opacity: 0.82;
+    margin: 20px;
+    transition: all 0.22s ease-in-out;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    transform-origin: bottom;
+    /* -webkit-transition: padding 2s; */
 }
+
+
+.card-pokemon:hover {
+    transform: translateY(-20px);
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.3);
+    opacity: 1;
+}
+
+/* .card-pokemon:not(:hover) {
+    animation-name: bounceback;
+    animation-timing-function: ease;
+} */
+
+@keyframes bounce {
+
+    
+    0%   { transform: translateY(0); }
+    100%  { transform: translateY(-20px); }
+    /* 0% { transform: translateY(0); } */
+  /* }
+
+@keyframes bounceback {
+    100%  { transform: translateY(-50px); }
+    0%   { transform: translateY(0); }
+    /* 100% { transform: translateY(0); } */
+  }
 
 h1 {
     color:darkred;
-
     font-size: 30px;
     font-weight: bold;
     text-decoration: none;
