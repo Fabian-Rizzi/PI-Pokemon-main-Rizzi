@@ -11,17 +11,22 @@
     border: solid 2px black;
 }
 
+.bottom-pokeball {
+    opacity: 0.9;
+}
+
 .pageButtons {
     display: flex;
     margin: 5px;
     padding-left: 10px;
-    border: solid 5px rgb(230, 230, 0);
+    border: solid 3px rgb(230, 230, 0);
     background-color: rgb(255, 0, 0);
     justify-content: center;
     position: relative;
     left: 500px; top: 1px;
     height: 60px;
     width: 550px;
+    border-radius: 5px;
 }
 
 .pageButtons button {
