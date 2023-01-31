@@ -17,6 +17,7 @@
     animation-duration: 0.5s;
     animation-iteration-count: 1;
     transform-origin: bottom;
+    font-weight: 900;
     /* -webkit-transition: padding 2s; */
 }
 
@@ -48,9 +49,12 @@
 
 h1 {
     color:darkred;
-    font-size: 30px;
-    font-weight: bold;
+    font-size: 22px;
+    /* font-weight: bold; */
+    /* font-weight: 900; */
+    font-weight: bolder;
     text-decoration: none;
+
 }
 
 h1:link {

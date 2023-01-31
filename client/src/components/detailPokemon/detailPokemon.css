@@ -3,10 +3,11 @@
     background-size: cover;
     background-attachment: fixed;
     padding-bottom: 120px;
+
 }
 
 .detailPokemon {
-    opacity: 0.9;
+    opacity: 1;
     display: flex;
     margin: 20px;
     border: solid 10px red;
@@ -43,9 +44,14 @@
     color: black;
     margin-right: 40px;
     margin-left: 40px;
-
+    background-color: darkgray;
+    opacity: 0.9;
 }
 
+h1 {
+    color: black;
+    font-size: 34px;
+}
 
 .data1 {
     /* padding-left: 60px; */
@@ -53,6 +59,8 @@
     top: 150px;
     padding: 10px;
     width: 250px;
+    opacity: 0.9;
+    
 }
 
 .data2 {
@@ -60,17 +68,21 @@
     top: 150px;
     padding: 10px;
     width: 250px;
+    opacity: 0.9;
+
 }
 
 
 p {
-    background-color: crimson;
+    /* background-color: crimson; */
+    background-color: darkgray;
     height: 35px;
     font-size: 20px;
-    border-radius: 10px;
+    border-radius: 6px;
     line-height: 35px;
     vertical-align: middle;
     width: 150px;
     text-align: center;
+    border: 1px solid black;
 
 }

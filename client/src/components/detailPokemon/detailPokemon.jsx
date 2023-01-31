@@ -28,8 +28,8 @@ class DetailPokemon extends React.Component {
                         <img src={this.props.pkmnDetail.image} alt={this.props.pkmnDetail.name}  />
                     </div>
                     <div className="pokemon">
-                        <h4>POKEMON ID {this.props.pkmnDetail.id}</h4>
                         <h1>{typeof this.props.pkmnDetail.name === 'string' ? this.props.pkmnDetail.name.replace(/^\w/, c => c.toUpperCase()) : this.props.pkmnDetail.name}</h1>
+                        <h4>POKEMON ID {this.props.pkmnDetail.id}</h4>
 
                         <h3>Types: {this.props.pkmnDetail.types}</h3> 
                     </div>
