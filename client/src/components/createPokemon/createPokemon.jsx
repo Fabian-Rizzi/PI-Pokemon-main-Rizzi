@@ -168,7 +168,7 @@ const CreatePokemons = () => {
                 </div>
             </form>
             </div>
-                <button type="submit" className="create" >Create Pokemon</button>
+                <button onClick={onSubmit} type="submit" className="create" >Create Pokemon</button>
         </div>
     )
 }
